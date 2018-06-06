@@ -16,7 +16,7 @@ docker pull arnu/research_env
 ```
 #### Step 3. Clone the research code repository. 
 ```bash
-git clone https://bitbucket.org/ArnuPretorius/phd_code
+git clone https://github.com/arnupretorius/lindaedynamics_icml2018.git
 ```
 
 ### Usage
