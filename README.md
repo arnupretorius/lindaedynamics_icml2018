@@ -1,4 +1,4 @@
-# lindaedynamics_icml2018
+# Learning dynamics of linear denoising autoencoders
 Code to reproduce all the results in the paper: "Learning dynamics of linear denoising autoencoders." (ICML 2018)
 
 # Research Code #
