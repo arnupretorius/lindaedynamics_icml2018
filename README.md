@@ -1,7 +1,7 @@
 # Learning dynamics of linear denoising autoencoders
 Code to reproduce all the results in the paper: "Learning dynamics of linear denoising autoencoders." (ICML 2018)
 
-**Note: this repo is still a work in progress. Additional notebooks comning soon...**
+**Note: this repo is still a work in progress. Additional notebooks coming soon...**
 
 # Research Code #
 
