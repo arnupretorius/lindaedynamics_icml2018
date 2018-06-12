@@ -10,8 +10,6 @@ class LinearAutoEncoder():
     def train(self, X, X_val=None, input_dim=5, n_epoch=100, hidden_dim=100, learning_rate=0.1, reg_param=0.0001, 
               noise='gaussian', noise_scale=1, verbose=False):
         
-        # dtype = torch.FloatTensor
-        # uncomment for to run on GPU
         dtype = torch.cuda.FloatTensor
         X_in = X.clone().type(dtype)
         X = X.type(dtype)
