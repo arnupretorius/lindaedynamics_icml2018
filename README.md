@@ -7,7 +7,7 @@ To reproduce Figures 1-4, all that is required is `numpy` and `matplotlib`.
 
 ## Requirements for larger scale experiments for Figures 5-6: 
 
-To reproduce Figures 5 and 6, a docker image was created to provide an identical research environment to the one used to run the initial experiments. Below are the instructions to reproduce these plots using this docker images and the notebooks provided.
+To reproduce Figures 5 and 6, a docker image was created to provide an identical research environment to the one used to run the initial experiments. Below are the instructions to reproduce these plots using this docker image and the notebooks provided.
 
 ## Quick Start (GPU required)
 
