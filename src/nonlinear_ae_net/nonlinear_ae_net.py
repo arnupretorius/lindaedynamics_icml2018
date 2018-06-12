@@ -63,7 +63,7 @@ def train_model(x, model, loss_criterion, n_epoch, learning_rate, weight_decay=0
         optimizer.step()
         
         # compute eigen-values (for higher resolution change frequency of computation)
-        if t % 100 == 0:
+        if t % 10 == 0:
             corr_mat_hat = compute_correlation_matrix(x_np, x_pred.data.cpu().numpy())
             S_hat = np.diag(U.T.dot(corr_mat_hat).dot(V.T))
             S_true = S[:4]
