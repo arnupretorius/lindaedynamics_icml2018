@@ -89,7 +89,7 @@ def plot_mse_loss_surface_3d(ax, x, y, v=0.0, l2=0.0, w1_range=(-2, 2), w2_range
     # fig = plt.figure(figsize=(8, 8))
     # ax = fig.gca(projection='3d')
     ax.set_zlim(0, 50)
-    ax.plot([0], [0], c='red', marker='*', label='Saddle point')
+    ax.plot([0], [0], 'ro', c='red', marker='*', label='Saddle point')
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=fcolors,
                     vmin=minn, vmax=maxx, shade=False, alpha=1)
 
