@@ -88,13 +88,14 @@ def plot_mse_loss_surface_3d(ax, x, y, v=0.0, l2=0.0, w1_range=(-2, 2), w2_range
     # plot
     # fig = plt.figure(figsize=(8, 8))
     # ax = fig.gca(projection='3d')
-    ax.scatter(0, 0, 1, c='red', marker='*', label='Saddle point')
+    ax.set_zlim(0, 50)
+    ax.plot([0], [0], c='red', marker='*', label='Saddle point')
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=fcolors,
-                    vmin=minn, vmax=maxx, shade=False, alpha=0.1)
+                    vmin=minn, vmax=maxx, shade=False, alpha=1)
 
-    ax.set_xlabel('$w_1$', fontsize=15)
-    ax.set_ylabel('$w_2$', fontsize=15)
-    ax.set_zlabel('$Loss$', fontsize=15)
+    ax.set_xlabel('$w_1$', fontsize=20)
+    ax.set_ylabel('$w_2$', fontsize=20)
+    ax.set_zlabel('$Loss$', fontsize=20)
 
     settings = (x, y, v, l2, w1_range, w2_range)
     ax.view_init(angle, 10)
@@ -137,9 +138,15 @@ def plot_global_minimum_manifold_3d(ax, settings):
     manifold_x = man_ws_x[manifold_indices]
     manifold_y = man_ws_y[manifold_indices]
 
+    pos = np.where(np.abs(np.diff(manifold_y)) >= 0.1)[0]+1
+    x = np.insert(manifold_x, pos, np.nan)
+    y = np.insert(manifold_y, pos, np.nan)
+
     # plot manifold of global minima
-    ax.scatter(manifold_y, manifold_x, 0, s=0.5, c='cyan',
-               label='Manifold of global minima')
+    #ax.scatter(manifold_y, manifold_x, 0, s=0.5, c='cyan',
+    #           label='Manifold of global minima')
+    ax.plot(y, x, c='cyan',
+                label='Manifold of global minima')
 
 
 def plot_optimiser_trajectory_2d(ax, weights, **kwargs):
