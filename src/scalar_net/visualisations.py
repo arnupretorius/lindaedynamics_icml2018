@@ -30,23 +30,17 @@ def plot_mse_loss_surface_2d(fig, ax, x, y, v=0.0, l2=0.0, w1_range=(-2, 2), w2_
 
     # plot vector space
     skip = (slice(None, None, 5), slice(None, None, 5))
-    # fig, ax = plt.subplots(figsize=(8, 8))
-    #ax.contour(ws_x, ws_y, cost_ws, 200)
     im = ax.imshow(cost_ws, extent=[ws_x.min(), ws_x.max(
     ), ws_y.min(), ws_y.max()], cmap=cm.coolwarm)
     ax.quiver(ws_x[skip], ws_y[skip], -dx[skip], dy[skip], cost_ws[skip])
     cbar = fig.colorbar(im, ax=ax)
-    # ax.set(aspect=1, title='Loss Surface')
     cbar.ax.set_ylabel('$Loss$', fontsize=15)
 
     ax.set_xlabel('$w_1$', fontsize=15)
     ax.set_ylabel('$w_2$', fontsize=15)
-    # ax.grid()
 
     # add saddle point
     ax.scatter(0, 0, label='Saddle point', c='red', marker='*')
-    # ax.scatter(0,0, c='black', marker=r'$\rightarrow$', label='Negative gradient')
-
     settings = (x, y, v, l2, w1_range, w2_range)
 
     return ax, settings
@@ -73,21 +67,17 @@ def plot_mse_loss_surface_3d(ax, x, y, v=0.0, l2=0.0, w1_range=(-2, 2), w2_range
     Y = ws_y
     Z = cost_ws
 
-    #fig, ax = plt.subplots(figsize=(8, 8))
-    #ax = fig.add_subplot(1,1,1, projection='3d')
-
     # fourth dimention - colormap
     # create colormap according to x-value (can use any 50x50 array)
-    color_dimension = Z  # change to desired fourth dimension
+    color_dimension = np.log(Z-4.68459160059e-09) #Z  # change to desired fourth dimension
     minn, maxx = color_dimension.min(), color_dimension.max()
-    norm = Normalize(minn, maxx)
+    #norm = Normalize(minn, maxx)
+    norm = Normalize(-0.875466470014, 3.9608131696)
     m = plt.cm.ScalarMappable(norm=norm, cmap='jet')
     m.set_array([])
     fcolors = m.to_rgba(color_dimension)
 
     # plot
-    # fig = plt.figure(figsize=(8, 8))
-    # ax = fig.gca(projection='3d')
     ax.set_zlim(0, 50)
     ax.plot([0], [0], 'ro', c='red', marker='*', label='Saddle point')
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=fcolors,
@@ -143,8 +133,6 @@ def plot_global_minimum_manifold_3d(ax, settings):
     y = np.insert(manifold_y, pos, np.nan)
 
     # plot manifold of global minima
-    #ax.scatter(manifold_y, manifold_x, 0, s=0.5, c='cyan',
-    #           label='Manifold of global minima')
     ax.plot(y, x, c='cyan',
                 label='Manifold of global minima')
 
@@ -288,11 +276,6 @@ def animate_learning(weights, save=False, name='anim'):
     ax2 = fig.add_subplot(gs[0, 2:], projection='3d')
     ax3 = fig.add_subplot(gs[1, 1:3])
 
-    # ax1 = fig.add_subplot(2, 2, 1)
-    # ax2 = fig.add_subplot(2, 2, 2, projection = '3d')
-    # ax3 = fig.add_subplot(2, 2, 3)
-    # ax4 = fig.add_subplot(2, 2, 4)
-
     ax1, settings = plot_mse_loss_surface_2d(ax1, 1, 1)
     ax2, settings = plot_mse_loss_surface_3d(ax2, 1, 1, angle=60)
     plot_global_minimum_manifold_2d(ax1, settings)
@@ -304,7 +287,6 @@ def animate_learning(weights, save=False, name='anim'):
         animate_optimiser_trajectory_3d(
             i, ax2, settings, weights, 'Gradient descent')
         animate_learning_dynamics(i, ax3, weights, 1)
-        # animate_weight_norm(i, ax4, scalarNet.history)
 
     # suncAnimation will call the 'update' function for each frame
     anim = FuncAnimation(fig, update, frames=100, interval=5, save_count=50)

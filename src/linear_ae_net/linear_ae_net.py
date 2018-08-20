@@ -19,6 +19,10 @@ class LinearAutoEncoder():
         self.strenghts = torch.zeros((1, D)).type(dtype)
         self.W1 = 0.0001*torch.randn(X.shape[1], hidden_dim).type(dtype)
         self.W2 = 0.0001*torch.randn(hidden_dim, input_dim).type(dtype)
+
+        W = self.W1.mm(self.W2)
+        s_int = np.linalg.svd(W.cpu().numpy(), compute_uv=0)
+        self.init = np.sum(s_int[:100])/len(s_int)
         
         for t in range(n_epoch):
             
