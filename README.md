@@ -1,7 +1,7 @@
 # Code: Learning dynamics of linear denoising autoencoders
 This repository provides the code to reproduce all the results in the paper: "Learning dynamics of linear denoising autoencoders." (ICML 2018)
 
-<img src="https://github.com/arnupretorius/lindaedynamics_icml2018/blob/master/animations/test4.gif" width="40" height="40" />
+<img src="https://github.com/arnupretorius/lindaedynamics_icml2018/blob/master/animations/test4.gif" width="200" height="200" />
 
 ## Basic requirements for Figures 1-4
 
